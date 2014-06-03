@@ -1,0 +1,29 @@
+
+NAME=rtsp
+OBJECTS= rtsp.o
+
+# use ./configure results, .i.e. macro output variables:
+CXX=@CXX@
+BINDIR=@bindir@
+
+all: $(NAME)
+
+clean:
+rm -f $(NAME)
+rm -f $(OBJECTS)
+
+install: $(NAME)
+cp $(NAME) $(BINDIR)
+
+uninstall:
+rm -f $(BINDIR)/$(NAME)
+
+$(NAME): $(OBJECTS)
+	$(CXX) -o $(NAME) $(OBJECTS)
+
+# Compile all *.cxx files (*.hxx required too) into *.o files:
+%.o: %.cxx %.hxx
+	$(CXX) -c $< -o $@
+
+#sample:
+#    ${CXX} -Wall -I/usr/include/gstreamer-0.10 rtsp.c -o rtsp `pkg-config --libs --cflags gstreamer-0.10 gstreamer-rtsp-0.10` -lglib-2.0 -lgstrtspserver-0.10 -lgstreamer-0.10
