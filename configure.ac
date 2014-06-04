@@ -1,9 +1,9 @@
 
 AC_INIT(rtsp, 0.1, ajlennon@dynamicdevices.co.uk)
-AC_CONFIG_SRCDIR([rtsp.c])
+AC_CONFIG_SRCDIR([rtsp-server.c])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
-AM_INIT_AUTOMAKE(rtsp, main)
+AM_INIT_AUTOMAKE(rtsp-server, main)
 
 AC_SUBST(PKG_CONFIG_SYSROOT_DIR)
 

@@ -31,8 +31,8 @@ int main (int argc, char *argv[])
   gst_init (&argc, &argv);
 
   if (argc < 2) {
-    g_print ("usage: %s <launch line> \n"
-        "example: %s \"( videotestsrc ! x264enc ! rtph264pay name=pay0 pt=96 )\"\n",
+    g_print ("usage: %s <launch line> <ipaddress>\n"
+        "example: %s \"( videotestsrc ! x264enc ! rtph264pay name=pay0 pt=96 )\" 127.0.0.1\n",
         argv[0], argv[0]);
     return -1;
   }
@@ -41,6 +41,10 @@ int main (int argc, char *argv[])
 
   /* create a server instance */
   server = gst_rtsp_server_new ();
+
+  /* set listening address */
+  if(argc > 2)
+    gst_rtsp_server_set_address(server, argv[2]);
 
   /* get the mount points for this server, every server has a default object
    * that be used to map uri mount points to media factories */
@@ -63,7 +67,11 @@ int main (int argc, char *argv[])
   gst_rtsp_server_attach (server, NULL);
 
   /* start serving */
-  g_print ("stream ready at rtsp://127.0.0.1:8554/test\n");
+  if(argc > 2)
+    g_print ("stream ready at rtsp://%s:8554/test\n", argv[2]);
+  else
+    g_print ("stream ready at rtsp://127.0.0.1:8554/test\n");
+
   g_main_loop_run (loop);
 
   return 0;
