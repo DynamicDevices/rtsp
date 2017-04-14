@@ -1,5 +1,5 @@
 AUTOMAKE_OPTIONS = foreign
-AM_CPPFLAGS = -I@PKG_CONFIG_SYSROOT_DIR@/usr/include/gstreamer-1.0 -I@PKG_CONFIG_SYSROOT_DIR@/usr/lib/glib-2.0/include -I@PKG_CONFIG_SYSROOT_DIR@/usr/include/glib-2.0
+AM_CPPFLAGS = -I @PKG_CONFIG_SYSROOT_DIR@/usr/lib/gstreamer-1.0/include -I@PKG_CONFIG_SYSROOT_DIR@/usr/include/gstreamer-1.0 -I@PKG_CONFIG_SYSROOT_DIR@/usr/lib/glib-2.0/include -I@PKG_CONFIG_SYSROOT_DIR@/usr/include/glib-2.0
 ACLOCAL_AMFLAGS = -I m4
 
 CFLAGS = -Wall -pedantic
